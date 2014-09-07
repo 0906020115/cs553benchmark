@@ -12,21 +12,24 @@ public class NetworkClient {
 	 static int buffersize=1;
 	 private static Socket clientsocket=null;
 	public static void main(String[] args) {
+		long start=System.currentTimeMillis();
 		if(args[0].equals("tcp")){
-			buffersize=Integer.parseInt(args[1]);	
+			//buffersize=Integer.parseInt(args[1]);	
 			new NetworkClient().startuptcp();// TODO Auto-generated method stub
 			}
 			else if(args[0]=="udp"){
 				
 			}// TODO Auto-generated method stub
-
+		long end=System.currentTimeMillis();
+		String dur=end-start+"";
+		System.out.println("time:"+dur);
 	}
 	public void startuptcp(){
 		try {
-			clientsocket=new Socket("localhost", 8882);
+			clientsocket=new Socket("localhost", 8885);
 			//BufferedReader infromuser=new BufferedReader(new InputStreamReader(System.in),buffersize);
 			DataOutputStream outtoserver = new DataOutputStream(clientsocket.getOutputStream());
-			outtoserver.writeByte(1);
+			outtoserver.writeByte(65511);
 			clientsocket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block

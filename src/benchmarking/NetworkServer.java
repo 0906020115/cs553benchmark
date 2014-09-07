@@ -13,8 +13,8 @@ import java.net.Socket;
 public class NetworkServer {
 	 private static ServerSocket ss=null;
 	 private static boolean serverlive=false;
-	 private static final int threadnum=2;
-	 static int buffersize=0;
+	 private static final int threadnum=8;
+	  static int buffersize=0;
 	/**
 	 * @param args
 	 */
@@ -22,6 +22,7 @@ public class NetworkServer {
 		
 		if(args[0].equals("tcp")){
 		buffersize=Integer.parseInt(args[1]);	
+		System.out.println(buffersize);
 		new NetworkServer().starttcp();// TODO Auto-generated method stub
 		}
 		else if(args[0]=="udp"){
@@ -30,13 +31,13 @@ public class NetworkServer {
 	}
 	public void starttcp(){
 		try {
-			ss=new ServerSocket(8882);
+			ss=new ServerSocket(8885);
 			serverlive=true;
 			Thread[] threads=new Thread[threadnum];
 			while(serverlive){
 				 
 				Socket socket=ss.accept();
-				System.out.println("bbbb");
+				
 				TCPThread tcpthread =new TCPThread(socket);
 				
 				for(int i=0;i<threadnum;i++){
@@ -61,7 +62,7 @@ public class NetworkServer {
 
 }
 class TCPThread implements Runnable{
-	private static final int buffersize = NetworkServer.buffersize;
+	private static int buffersize = 0;
 	private DataInputStream inputstream=null;
 	private PrintStream printstream = null;
 	private Socket clientsocket=null;
@@ -71,9 +72,10 @@ class TCPThread implements Runnable{
 	}
 	@Override
 	public void run() {
-		 System.out.println("server start...."+buffersize);
+		buffersize=NetworkServer.buffersize;
+		// System.out.println("server start...."+buffersize);
 		try {
-			infromclient=new BufferedReader(new InputStreamReader(clientsocket.getInputStream()),buffersize);
+			infromclient=new BufferedReader(new InputStreamReader(clientsocket.getInputStream()),1024*1024);
 			//System.out.println(infromclient.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
