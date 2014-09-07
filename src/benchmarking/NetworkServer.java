@@ -14,7 +14,6 @@ public class NetworkServer {
 	 private static ServerSocket ss=null;
 	 private static boolean serverlive=false;
 	 private static final int threadnum=2;
-	 private static final TCPThread[] tcpthreads=new TCPThread[threadnum];
 	 static int buffersize=0;
 	/**
 	 * @param args
@@ -24,7 +23,6 @@ public class NetworkServer {
 		if(args[0].equals("tcp")){
 		buffersize=Integer.parseInt(args[1]);	
 		new NetworkServer().starttcp();// TODO Auto-generated method stub
-		
 		}
 		else if(args[0]=="udp"){
 			
