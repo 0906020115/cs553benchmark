@@ -6,7 +6,7 @@ import sun.awt.windows.ThemeReader;
 
 public class cpu {
 	
-	private static final int Threads=8; 
+	private static final int Threads=1; 
 	public static void main(String[] args) {
 		TaskThread taskThread=new TaskThread();
 		Thread[] threads=new Thread[Threads];

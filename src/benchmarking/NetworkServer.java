@@ -30,7 +30,7 @@ public class NetworkServer {
 	}
 	public void starttcp(){
 		try {
-			ss=new ServerSocket(8888);
+			ss=new ServerSocket(8882);
 			serverlive=true;
 			Thread[] threads=new Thread[threadnum];
 			while(serverlive){
@@ -71,10 +71,10 @@ class TCPThread implements Runnable{
 	}
 	@Override
 	public void run() {
-		 System.out.println("server start");
+		 System.out.println("server start...."+buffersize);
 		try {
 			infromclient=new BufferedReader(new InputStreamReader(clientsocket.getInputStream()),buffersize);
-			System.out.println(infromclient.readLine());
+			//System.out.println(infromclient.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

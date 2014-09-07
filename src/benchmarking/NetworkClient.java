@@ -1,12 +1,15 @@
 package benchmarking;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class NetworkClient {
 	 private static final int threadnum=2;
-	 static int buffersize=0;
+	 static int buffersize=1;
 	 private static Socket clientsocket=null;
 	public static void main(String[] args) {
 		if(args[0].equals("tcp")){
@@ -20,7 +23,11 @@ public class NetworkClient {
 	}
 	public void startuptcp(){
 		try {
-			clientsocket=new Socket("localhost", 8888);
+			clientsocket=new Socket("localhost", 8882);
+			//BufferedReader infromuser=new BufferedReader(new InputStreamReader(System.in),buffersize);
+			DataOutputStream outtoserver = new DataOutputStream(clientsocket.getOutputStream());
+			outtoserver.writeByte(1);
+			clientsocket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
