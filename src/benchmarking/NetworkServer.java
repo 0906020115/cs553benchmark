@@ -75,7 +75,7 @@ class TCPThread implements Runnable{
 		buffersize=NetworkServer.buffersize;
 		// System.out.println("server start...."+buffersize);
 		try {
-			infromclient=new BufferedReader(new InputStreamReader(clientsocket.getInputStream()),1024*1024);
+			infromclient=new BufferedReader(new InputStreamReader(clientsocket.getInputStream()),1024);
 			//System.out.println(infromclient.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

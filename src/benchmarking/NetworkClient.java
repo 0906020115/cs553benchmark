@@ -29,7 +29,11 @@ public class NetworkClient {
 			clientsocket=new Socket("localhost", 8885);
 			//BufferedReader infromuser=new BufferedReader(new InputStreamReader(System.in),buffersize);
 			DataOutputStream outtoserver = new DataOutputStream(clientsocket.getOutputStream());
-			outtoserver.writeByte(65511);
+			String s=null;
+			for(int i=0;i<10000;i++){
+				s=s+"a";
+			}
+			outtoserver.writeBytes(s);
 			clientsocket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
