@@ -6,7 +6,7 @@ import sun.awt.windows.ThemeReader;
 
 public class cpu {
 	
-	private static final int Threads=1; 
+	private static final int Threads=2; 
 	public static void main(String[] args) {
 		TaskThread taskThread=new TaskThread();
 		Thread[] threads=new Thread[Threads];
@@ -20,7 +20,7 @@ public class cpu {
 	}
 }
 	class TaskThread implements Runnable{
-		private static final int cnt=200;
+		private static final int cnt=1000;
 		public TaskThread() {
 			
 			// TODO Auto-generated constructor stub
@@ -72,7 +72,7 @@ public class cpu {
 		      C[i][j] = 0;
 		      for(int k=0;k<cnt;++k)
 		      {
-		        C[i][j]+=A[i][k]*B[k][j];
+		        C[i][j]+=A[i][k]+B[k][j];
 		      }
 		    }
 		  }
@@ -86,7 +86,7 @@ public class cpu {
 		      C[i][j] = 0;
 		      for(int k=0;k<cnt;++k)
 		      {
-		        C[i][j]+=A[i][k]*B[k][j];
+		        C[i][j]+=A[i][k]+B[k][j];
 		      }
 		    }
 		  }
