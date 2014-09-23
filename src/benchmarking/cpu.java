@@ -6,7 +6,7 @@ import sun.awt.windows.ThemeReader;
 
 public class cpu {
 	
-	private static final int Threads=2; 
+	private static final int Threads=1; 
 	public static void main(String[] args) {
 		TaskThread taskThread=new TaskThread();
 		Thread[] threads=new Thread[Threads];
@@ -20,7 +20,7 @@ public class cpu {
 	}
 }
 	class TaskThread implements Runnable{
-		private static final int cnt=1000;
+		private static final int cnt=1024;
 		public TaskThread() {
 			
 			// TODO Auto-generated constructor stub
@@ -29,10 +29,11 @@ public class cpu {
 		public void run() {
 			try {
 				String dur=null;
-				long start=System.currentTimeMillis();
+				
 				int[][] A = new int[cnt][cnt],B=new int[cnt][cnt],C=new int[cnt][cnt];
 				int_mat(A);
 				int_mat(B);
+				long start=System.currentTimeMillis();
 				integer_operation(A, B, C);
 				long end=System.currentTimeMillis();
 				dur=end-start+"";
@@ -50,7 +51,7 @@ public class cpu {
 			  {
 			    for(int j=1;j<cnt;j++)
 			    {
-			      matric[i][j] =(int)(Math.random()*50);
+			      matric[i][j] =1;
 			    }
 			  }
 		}
@@ -59,7 +60,7 @@ public class cpu {
 			  {
 			    for(int j=0;j<cnt;++j)
 			    {
-			      matric[i][j] =(float) (Math.random()*50);
+			      matric[i][j] =1;
 			    }
 			  }
 		}
